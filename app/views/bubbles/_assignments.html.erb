@@ -1,18 +1,8 @@
-<% if bubble.assignments.any? %>
+<% bubble.assignments.each do |assignment| %>
   <div class="bubble__bubble bubble__meta bubble__assignee">
     <%= form_with url: bucket_bubble_assignments_path(bubble.bucket, bubble), data: { controller: "form" } do |form| %>
-      <label class="btn btn--plain position-relative fill-transparent" style="<%= "--btn-icon-size: 2em;" unless bubble.assignees.any? %>">
-        <% if bubble.assignees.any? %>
-          <% if bubble.assignees.many? %>
-            <div class="avatar__group">
-              <% bubble.assignees.each do |assignee| %>
-                <%= avatar_image_tag assignee, loading: :lazy, class: "avatar flex-item-no-shrink" %>
-              <% end %>
-            </div>
-          <% else %>
-            <%= avatar_image_tag bubble.assignees.first, loading: :lazy, class: "avatar flex-item-no-shrink" %>
-          <% end %>
-        <% end %>
+      <label class="btn btn--plain position-relative fill-transparent">
+        <%= avatar_image_tag assignment.assignee, loading: :lazy, class: "avatar flex-item-no-shrink" %>
 
         <%= form.collection_select :assignee_id, bubble.bucket.users.active, :id, :name, { prompt: "Assign to…", selected: bubble.assignees.pluck(:id) },
               class: "input input--hidden txt-medium",

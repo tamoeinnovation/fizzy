@@ -137,17 +137,37 @@
   &.bubble__assignee {
     aspect-ratio: 1;
     font-size: 4.5cqi;
-    inset: -2cqi auto auto 26cqi;
-    padding: 0.4em;
+    inset: 4cqb auto auto -2cqi;
+    padding: 0.2em;
+
+    + & {
+      inset: 1cqb auto auto 10cqi;
+
+      + & {
+        inset: -1cqb auto auto 25cqi;
+      }
+    }
 
     select {
       inset: 0;
       position: absolute;
     }
 
+    .avatar {
+      border-radius: var(--bubble-shape);
+    }
+
     @media (hover: hover) {
       .windshield .bubble:hover & {
-        transform: translate(1rem, 0);
+        transform: translate(1rem, -1rem);
+      }
+
+      .windshield .bubble:hover & + & {
+        transform: translate(1rem, -1rem);
+      }
+
+      .windshield .bubble:hover & + & + & {
+        transform: translate(1.5rem, -0.5rem);;
       }
     }
   }
@@ -166,16 +186,6 @@
     .btn {
       font-size: 4cqi;
     }
-
-    .windshield & {
-      display: none;
-    }
-  }
-
-  &.bubble__color {
-    cursor: pointer;
-    inset: 8cqb auto auto 0.5cqi;
-    padding: 0.4em;
 
     .windshield & {
       display: none;

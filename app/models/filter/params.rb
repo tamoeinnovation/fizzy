@@ -5,7 +5,7 @@ module Filter::Params
     :assignment_status,
     :indexed_by,
     assignee_ids: [],
-    assigner_ids: [],
+    creator_ids: [],
     bucket_ids: [],
     stage_ids: [],
     tag_ids: [],
@@ -41,7 +41,7 @@ module Filter::Params
       params[:bucket_ids]        = buckets.ids
       params[:stage_ids]         = stages.ids
       params[:assignee_ids]      = assignees.ids
-      params[:assigner_ids]      = assigners.ids
+      params[:creator_ids]       = creators.ids
     end.compact_blank.reject(&method(:default_value?))
   end
 

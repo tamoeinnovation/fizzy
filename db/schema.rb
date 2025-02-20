@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_02_14_222911) do
+ActiveRecord::Schema[8.1].define(version: 2025_02_20_220424) do
   create_table "accesses", force: :cascade do |t|
     t.integer "bucket_id", null: false
     t.integer "user_id", null: false
@@ -77,13 +77,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_02_14_222911) do
     t.index ["filter_id"], name: "index_assignees_filters_on_filter_id"
   end
 
-  create_table "assigners_filters", id: false, force: :cascade do |t|
-    t.integer "filter_id", null: false
-    t.integer "assigner_id", null: false
-    t.index ["assigner_id"], name: "index_assigners_filters_on_assigner_id"
-    t.index ["filter_id"], name: "index_assigners_filters_on_filter_id"
-  end
-
   create_table "assignments", force: :cascade do |t|
     t.integer "assignee_id", null: false
     t.integer "bubble_id", null: false
@@ -135,6 +128,13 @@ ActiveRecord::Schema[8.1].define(version: 2025_02_14_222911) do
     t.integer "creator_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "creators_filters", id: false, force: :cascade do |t|
+    t.integer "filter_id", null: false
+    t.integer "creator_id", null: false
+    t.index ["creator_id"], name: "index_creators_filters_on_creator_id"
+    t.index ["filter_id"], name: "index_creators_filters_on_filter_id"
   end
 
   create_table "event_summaries", force: :cascade do |t|

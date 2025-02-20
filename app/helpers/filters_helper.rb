@@ -12,7 +12,7 @@ module FiltersHelper
   end
 
   def any_filters?(filter)
-    filter.tags.any? || filter.assignees.any? || filter.assigners.any? ||
+    filter.tags.any? || filter.assignees.any? || filter.creators.any? ||
     filter.stages.any? || filter.terms.any? ||
     filter.assignment_status.unassigned? || !filter.default_indexed_by?
   end

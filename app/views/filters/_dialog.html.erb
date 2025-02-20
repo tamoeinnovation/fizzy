@@ -121,20 +121,20 @@
         </menu>
 
         <menu class="filter__menu">
-          <li class="filter__label"><strong>Assigned by…</strong></li>
+          <li class="filter__label"><strong>Added by…</strong></li>
           <li>
-            <%= label_tag "assigner_ids_me", class: "btn filter__button" do %>
-              <%= check_box_tag "assigner_ids[]", Current.user.id, filter.assigners.include?(Current.user), id: "assigner_ids_me",
-                hidden: true, data: { action: "filter-form#clearCategory", filter_form_name_param: "assignment_status" } %>
+            <%= label_tag "creator_ids_me", class: "btn filter__button" do %>
+              <%= check_box_tag "creator_ids[]", Current.user.id, filter.creators.include?(Current.user), id: "creator_ids_me",
+                hidden: true %>
                 <span>Me</span>
                 <%= image_tag "close.svg", aria: { hidden: true }, size: 24 %>
               <% end %>
           </li>
           <% Current.account.users.active.without(Current.user).order(:name).each do |user| %>
             <li>
-              <%= label_tag "assigner_ids_#{user.id}", class: "btn filter__button" do %>
-                <%= check_box_tag "assigner_ids[]", user.id, filter.assigners.include?(user), id: "assigner_ids_#{user.id}",
-                  hidden: true, data: { action: "filter-form#clearCategory", filter_form_name_param: "assignment_status" } %>
+              <%= label_tag "creator_ids_#{user.id}", class: "btn filter__button" do %>
+                <%= check_box_tag "creator_ids[]", user.id, filter.creators.include?(user), id: "creator_ids_#{user.id}",
+                  hidden: true %>
                   <span><%= user.name %></span>
                   <%= image_tag "close.svg", aria: { hidden: true }, size: 24 %>
                 <% end %>

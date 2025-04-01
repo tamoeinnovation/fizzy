@@ -13,16 +13,47 @@
     <div class="btn btn--placeholder flex-item-justify-start"></div>
 
     <header class="flex flex-inline flex-column center flex-shrink">
-      <h1 class="txt-large margin-none-block-end">
-        <% if @filter.buckets.none? %>
-          All collections
-        <% elsif @filter.buckets.one? %>
-          <%= @filter.buckets.first.name %>
-        <% else %>
-          <%= @filter.buckets.map(&:name).to_sentence %>
-        <% end %>
-      </h1>
-      <%= render "bubbles/filters", filter: @filter %>
+      <div class="card-bucket__filter flex-inline center position-relative" data-controller="dialog" data-action="keydown.esc->dialog#close click@document->dialog#closeOnClickOutside">
+        <button class="txt-align-center input input--select borderless center txt-medium" data-action="click->dialog#open:stop">
+          <h1 class="txt-large overflow-ellipsis margin-none">
+            <% if @filter.buckets.none? %>
+              All collections
+            <% elsif @filter.buckets.one? %>
+              <%= @filter.buckets.first.name %>
+            <% else %>
+              <%= @filter.buckets.map(&:name).to_sentence %>
+            <% end %>
+          </h1>
+        </button>
+
+        <dialog class="events__popup popup panel flex-column align-start gap-half fill-white shadow" data-dialog-target="dialog" data-action="turbo:before-cache@document->dialog#close">
+          <strong class="popup__title margin-block-start-half pad-inline-half">In Collection</strong>
+          <%= form_with url: bubbles_path, method: :get, class: "flex flex-column full-width popup__list", 
+                data: { controller: "form" } do |form| %>
+            <% @filter.as_params.except(:bucket_ids).each do |key, value| %>
+              <%= filter_hidden_field_tag key, value %>
+            <% end %>
+
+            <%= link_to bubbles_path(@filter.as_params.except(:bucket_ids)), class: "btn popup__item" do %>
+              <span class="overflow-ellipsis">All collections</span>
+            <% end %>
+            
+            <% Current.user.buckets.order(:name).each do |bucket| %>
+              <div class="btn popup__item">
+                <%= form.check_box "bucket_ids[]", { 
+                  checked: @filter.buckets.include?(bucket),
+                  data: { action: "change->form#submit" },
+                  include_hidden: false,
+                }, bucket.id %>
+
+                <%= form.label "bucket_ids[]", bucket.name, for: dom_id(bucket, :filter), class: "overflow-ellipsis" %>
+                <%= icon_tag "check", size: 18, class: "checked flex-item-justify-end" %>
+              </div>
+            <% end %>
+          <% end %>
+        </dialog>
+      </div>
+      <%#= render "bubbles/filters", filter: @filter %>
     </header>
 
     <% if (bucket = @filter.buckets.first) && @filter.buckets.one? %>
@@ -77,7 +108,7 @@
             <% end %>
 
             <%= link_to bubbles_path(@filter.as_params.except(:stage_ids)), class: "btn popup__item" do %>
-              <span class="overflow-ellipsis">Clear all</span>
+              <span class="overflow-ellipsis">All stages</span>
             <% end %>
                 
             <% workflow.stages.each do |stage| %>

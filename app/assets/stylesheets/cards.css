@@ -167,6 +167,12 @@
   padding: var(--block-space-half) var(--inline-space-double);
 }
 
+.card-bucket__filter {
+  > button {
+    --hover-size: 0;
+  }
+}
+
 .card-column__filter {
   > button {
     --hover-size: 0;

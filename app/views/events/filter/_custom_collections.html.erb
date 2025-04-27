@@ -1,0 +1,30 @@
+<div class="flex flex-column max-width popup__list full-width">
+  <div class="popup__group flex align-center full-width gap-half overflow-ellipsis">
+    <%= link_to cards_path(assignee_ids: [Current.user.id]), class: "btn popup__new popup__item", style: "view-transition-name: new-collection" do %>
+      <%= icon_tag "filter" %>
+      <span>Assigned to me</span>
+    <% end %>
+
+    <span class="translucent flex-item-no-shrink"> ›</span>
+  </div>
+
+  <div class="popup__group flex align-center full-width gap-half overflow-ellipsis">
+    <%= link_to cards_path(creator_ids: [Current.user.id]), class: "btn popup__new popup__item", style: "view-transition-name: new-collection" do %>
+      <%= icon_tag "filter" %>
+      <span>Reported by me</span>
+    <% end %>
+
+    <span class="translucent flex-item-no-shrink"> ›</span>
+  </div>
+
+  <% @filters.each do |filter| %>
+    <div class="popup__group flex align-center full-width gap-half overflow-ellipsis">
+      <%= link_to cards_path(**filter.as_params), class: "btn popup__new popup__item", style: "view-transition-name: new-collection" do %>
+        <%= icon_tag "filter" %>
+        <span><%= filter.summary %></span>
+      <% end %>
+      <span class="translucent flex-item-no-shrink"> ›</span>
+    </div>
+  <% end %>
+</div>
+<hr class="full-width separator--horizontal margin-none" style="--border-color: transparent;">

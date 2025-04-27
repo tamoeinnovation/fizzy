@@ -19,6 +19,7 @@
 				filter_selected_class: "selected" } do %>
 		<%= render "events/filter/header" %>
 		<%= render "events/filter/new_collection_option" %>
+		<%= render "events/filter/custom_collections" %>
 		<% if Current.user.collections.count > 15 %>
 			<input placeholder="Find a collection…" class="input input--transparent txt-small" type="search" autocorrect="off" autocomplete="off" data-1p-ignore="true" data-action="input->filter#filter" autofocus>
 		<% end %>

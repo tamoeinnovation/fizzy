@@ -144,7 +144,7 @@
     place-content: center;
     margin-inline-end: -0.75em;
 
-    img {
+    .icon {
       block-size: 1.1em;
       inline-size: 1.1em;
       grid-area: 1 / 1;

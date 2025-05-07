@@ -28,5 +28,9 @@
     </footer>
 
     <%= render "cards/display/common/background", card: card %>
+
+    <% if card.closing_soon? %>
+      <%= render "cards/display/preview/bubble", label: "Closes in", days: card.days_until_close %>
+    <% end %>
   <% end %>
 <% end %>

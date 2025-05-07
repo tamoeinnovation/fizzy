@@ -1,6 +1,9 @@
 module Card::Closeable
   extend ActiveSupport::Concern
 
+  AUTO_CLOSE_AFTER = 30.days
+  AUTO_CLOSE_REMINDER_BEFORE = 30.days
+
   included do
     has_one :closure, dependent: :destroy
 
@@ -24,6 +27,14 @@ module Card::Closeable
 
   def auto_close_at
     last_active_at + auto_close_period if auto_closing? && last_active_at
+  end
+
+  def days_until_close
+    (auto_close_at.to_date - Date.current).to_i if auto_close_at
+  end
+
+  def closing_soon?
+    considering? && Time.current >= auto_close_at - AUTO_CLOSE_REMINDER_BEFORE
   end
 
   def closed?

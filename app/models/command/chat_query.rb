@@ -103,6 +103,7 @@ class Command::ChatQuery < Command
         * An unassigned card is a card without assignees.
         * Never create a /search or /insight without additional params.
         * An unassigned card can be closed or not. "unassigned" and "closed" are different unrelated concepts.
+        * An unassigned card can be "considering" or "doing". "unassigned" and "engagement_status" are different unrelated concepts.
         * Only use assignment_status asking for unassigned cards. Never use in other circumstances.
         * There are similar commands to filter and act on cards (e.g: filter by assignee or assign 
           cards). Favor filtering/queries for commands like "cards assigned to someone".

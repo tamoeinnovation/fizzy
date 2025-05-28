@@ -20,7 +20,7 @@
     :where(h5) { font-size: 0.83em; }
     :where(h6) { font-size: 0.67em; }
 
-    :where(p, ul, ol, dl, blockquote, figure) {
+    :where(p, ul, ol, dl, blockquote, figure, .attachment) {
       margin-block: var(--block-margin);
       overflow-wrap: break-word;
       text-wrap: pretty;
@@ -81,7 +81,7 @@
       font-size: var(--text-small);
       flex-wrap: wrap;
       line-height: 1.3;
-      gap: 0.5ch;
+      column-gap: 0.5ch;
       justify-content: center;
       margin: var(--block-space-half) var(--inline-space);
       text-align: center;

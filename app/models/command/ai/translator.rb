@@ -145,7 +145,13 @@ class Command::Ai::Translator
 
         Omit empty arrays or unnecessary properties. At least one property (`context` or `commands`) must exist.
 
-        Never include JSON outside of "context" or "commands".
+        Never include JSON outside of "context" or "commands". E.g: this is not allowed:
+
+        { "terms" => "some keywords" }
+
+        It should be:
+
+        { "context" => { "terms" => "some keywords" } }
 
         ## Other Strict Instructions:
 

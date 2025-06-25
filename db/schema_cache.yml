@@ -441,7 +441,7 @@ columns:
     default_function:
     collation:
     comment:
-  - &31 !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+  - &37 !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
     auto_increment:
     name: title
     cast_type: *7
@@ -510,11 +510,11 @@ columns:
   - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
     auto_increment:
     name: all_access
-    cast_type: &32 !ruby/object:ActiveModel::Type::Boolean
+    cast_type: &38 !ruby/object:ActiveModel::Type::Boolean
       precision:
       scale:
       limit:
-    sql_type_metadata: &33 !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+    sql_type_metadata: &39 !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
       sql_type: boolean
       type: :boolean
       limit:
@@ -734,7 +734,7 @@ columns:
     comment:
   filters_tags:
   - *19
-  - &30 !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+  - &36 !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
     auto_increment:
     name: tag_id
     cast_type: *1
@@ -876,6 +876,178 @@ columns:
     default_function:
     collation:
     comment:
+  search_embeddings_chunks:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: chunk_id
+    cast_type: *1
+    sql_type_metadata: *2
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: rowids
+    cast_type: &30 !ruby/object:ActiveModel::Type::Binary
+      precision:
+      scale:
+      limit:
+    sql_type_metadata: &31 !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+      sql_type: BLOB
+      type: :binary
+      limit:
+      precision:
+      scale:
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: size
+    cast_type: *1
+    sql_type_metadata: *2
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: validity
+    cast_type: *30
+    sql_type_metadata: *31
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  search_embeddings_info:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: key
+    cast_type: *15
+    sql_type_metadata: *16
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: value
+    cast_type: &32 !ruby/object:ActiveModel::Type::Value
+      precision:
+      scale:
+      limit:
+    sql_type_metadata: !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+      sql_type: ANY
+      type:
+      limit:
+      precision:
+      scale:
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  search_embeddings_metadatachunks00:
+  - &33 !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: data
+    cast_type: *30
+    sql_type_metadata: *31
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
+  - &34 !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: rowid
+    cast_type: *32
+    sql_type_metadata: &35 !ruby/object:ActiveRecord::ConnectionAdapters::SqlTypeMetadata
+      sql_type: ''
+      type:
+      limit:
+      precision:
+      scale:
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  search_embeddings_metadatachunks01:
+  - *33
+  - *34
+  search_embeddings_metadatatext00:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: data
+    cast_type: *15
+    sql_type_metadata: *16
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - *34
+  search_embeddings_rowids:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: chunk_id
+    cast_type: *1
+    sql_type_metadata: *2
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: chunk_offset
+    cast_type: *1
+    sql_type_metadata: *2
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: id
+    cast_type: *32
+    sql_type_metadata: *35
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: rowid
+    cast_type: *1
+    sql_type_metadata: *2
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  search_embeddings_vector_chunks00:
+  - *34
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
+    name: vectors
+    cast_type: *30
+    sql_type_metadata: *31
+    'null': false
+    default:
+    default_function:
+    collation:
+    comment:
   search_queries:
   - *5
   - *6
@@ -934,19 +1106,19 @@ columns:
   - *22
   - *5
   - *6
-  - *30
+  - *36
   - *9
   tags:
   - *5
   - *6
-  - *31
+  - *37
   - *9
   users:
   - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
     auto_increment:
     name: active
-    cast_type: *32
-    sql_type_metadata: *33
+    cast_type: *38
+    sql_type_metadata: *39
     'null': false
     default: true
     default_function:
@@ -1005,8 +1177,8 @@ columns:
   - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
     auto_increment:
     name: watching
-    cast_type: *32
-    sql_type_metadata: *33
+    cast_type: *38
+    sql_type_metadata: *39
     'null': false
     default: true
     default_function:
@@ -1075,6 +1247,13 @@ primary_keys:
   pins: id
   reactions: id
   schema_migrations: version
+  search_embeddings_chunks: chunk_id
+  search_embeddings_info: key
+  search_embeddings_metadatachunks00: rowid
+  search_embeddings_metadatachunks01: rowid
+  search_embeddings_metadatatext00: rowid
+  search_embeddings_rowids: rowid
+  search_embeddings_vector_chunks00: rowid
   search_queries: id
   search_results: id
   sessions: id
@@ -1117,6 +1296,13 @@ data_sources:
   pins: true
   reactions: true
   schema_migrations: true
+  search_embeddings_chunks: true
+  search_embeddings_info: true
+  search_embeddings_metadatachunks00: true
+  search_embeddings_metadatachunks01: true
+  search_embeddings_metadatatext00: true
+  search_embeddings_rowids: true
+  search_embeddings_vector_chunks00: true
   search_queries: true
   search_results: true
   sessions: true
@@ -2178,6 +2364,13 @@ indexes:
     comment:
     valid: true
   schema_migrations: []
+  search_embeddings_chunks: []
+  search_embeddings_info: []
+  search_embeddings_metadatachunks00: []
+  search_embeddings_metadatachunks01: []
+  search_embeddings_metadatatext00: []
+  search_embeddings_rowids: []
+  search_embeddings_vector_chunks00: []
   search_queries:
   - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
     table: search_queries
@@ -2264,7 +2457,23 @@ indexes:
     nulls_not_distinct:
     comment:
     valid: true
-  tags: []
+  tags:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: tags
+    name: index_tags_on_account_id_and_title
+    unique: true
+    columns:
+    - title
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using:
+    include:
+    nulls_not_distinct:
+    comment:
+    valid: true
   users:
   - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
     table: users

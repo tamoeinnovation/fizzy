@@ -10,6 +10,8 @@ module User::Searcher
   end
 
   def remember_search(terms)
-    search_queries.create(terms: terms) if search_queries.last&.terms != terms
+    search_queries.find_or_create_by(terms: terms).tap do |search_query|
+      search_query.touch unless search_query.previously_new_record?
+    end
   end
 end

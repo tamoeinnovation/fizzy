@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_07_02_211937) do
+ActiveRecord::Schema[8.1].define(version: 2025_07_03_193928) do
   create_table "accesses", force: :cascade do |t|
     t.datetime "accessed_at"
     t.integer "collection_id", null: false
@@ -315,6 +315,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_07_02_211937) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id", "terms"], name: "index_search_queries_on_user_id_and_terms"
+    t.index ["user_id", "updated_at"], name: "index_search_queries_on_user_id_and_updated_at", unique: true
     t.index ["user_id"], name: "index_search_queries_on_user_id"
   end
 

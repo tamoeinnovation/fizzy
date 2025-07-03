@@ -2312,6 +2312,23 @@ indexes:
     nulls_not_distinct:
     comment:
     valid: true
+  - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
+    table: search_queries
+    name: index_search_queries_on_user_id_and_updated_at
+    unique: true
+    columns:
+    - user_id
+    - updated_at
+    lengths: {}
+    orders: {}
+    opclasses: {}
+    where:
+    type:
+    using:
+    include:
+    nulls_not_distinct:
+    comment:
+    valid: true
   search_results: []
   sessions:
   - !ruby/object:ActiveRecord::ConnectionAdapters::IndexDefinition
@@ -2499,4 +2516,4 @@ indexes:
     comment:
     valid: true
   workflows: []
-version: 20250702211937
+version: 20250703193928

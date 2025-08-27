@@ -27,9 +27,12 @@ class Event::Summarizer
     @llm_model = llm_model
   end
 
-  def summarize
-    response = chat.ask join_prompts("Summarize the following content:", summarizable_content)
-    [ response.content, Ai::UsageCost.from_llm_response(response).in_microcents ]
+  def summarized_content
+    llm_response.content
+  end
+
+  def cost
+    Ai::UsageCost.from_llm_response(llm_response)
   end
 
   def summarizable_content
@@ -38,6 +41,10 @@ class Event::Summarizer
 
   private
     attr_reader :prompt, :llm_model
+
+    def llm_response
+      @llm_response ||= chat.ask join_prompts("Summarize the following content:", summarizable_content)
+    end
 
     def chat
       chat = RubyLLM.chat(model: llm_model)

@@ -17,11 +17,14 @@ class User::SettingsTest < ActiveSupport::TestCase
     bundle = @user.notification_bundles.create!
     assert bundle.pending?
 
-    perform_enqueued_jobs only: Notification::Bundle::DeliverJob do
-      @settings.update!(bundle_email_frequency: :daily)
-    end
+    freeze_time Time.current do
+      perform_enqueued_jobs only: Notification::Bundle::DeliverJob do
+        @settings.update!(bundle_email_frequency: :daily)
+      end
 
-    assert bundle.reload.delivered?
+      assert bundle.reload.delivered?
+      assert_equal Time.current, bundle.ends_at
+    end
   end
 
   test "changing other settings will not affect pending bundles" do

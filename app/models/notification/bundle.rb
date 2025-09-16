@@ -47,10 +47,15 @@ class Notification::Bundle < ApplicationRecord
     DeliverJob.perform_later(self)
   end
 
+  def flush
+    update!(ends_at: Time.current)
+    deliver_later
+  end
+
   private
     def set_default_window
       self.starts_at ||= Time.current
-      self.ends_at ||= user.settings.bundle_aggregation_period.from_now
+      self.ends_at ||= self.starts_at + user.settings.bundle_aggregation_period
     end
 
     def window

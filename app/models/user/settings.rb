@@ -47,9 +47,7 @@ class User::Settings < ApplicationRecord
     end
 
     def flush_pending_bundles
-      user.notification_bundles.pending.find_each do |bundle|
-        bundle.deliver_later
-      end
+      user.notification_bundles.pending.find_each(&:flush)
     end
 
     def default_timezone

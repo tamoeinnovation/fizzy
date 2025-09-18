@@ -1,5 +1,4 @@
 <% filter = user_filtering.filter %>
-<%= form_with url: cards_path, method: :get, class: "", data: { controller: "form", turbo_frame: "card_columns", action: "input->form#debouncedSubmit" } do |form| %>
   <% filter.as_params.except(:terms).each do |key, value| %>
     <%= filter_hidden_field_tag key, value %>
   <% end %>
@@ -13,8 +12,7 @@
   <% end %>
 
   <%= form.text_field "terms[]", placeholder: "Filter these cards…", class: "input txt-x-small filter__terms",
-        autofocus: false, autocomplete: :off, autocorrect: "off", data: { "1p-ignore": "true", action: "keydown.enter->form#submitToTopTarget" } %>
-<% end %>
+        autofocus: false, autocomplete: :off, autocorrect: "off", data: { "1p-ignore": "true", action: "input->form#debouncedSubmit keydown.enter->form#submitToTopTarget" } %>
 
 <% if filter.terms.present? %>
   <% filter.terms.each do |term| %>

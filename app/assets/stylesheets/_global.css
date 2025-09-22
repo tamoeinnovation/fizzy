@@ -74,6 +74,7 @@
   --z-popup: 10;
   --z-terminal: 20;
   --z-tray: 21;
+  --z-tooltip: 30;
 
   /* OKLCH colors: Fixed */
   --lch-black: 0% 0 0;

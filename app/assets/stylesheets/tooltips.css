@@ -38,6 +38,7 @@
         opacity: 1;
         transition-delay: var(--tooltip-delay);
         translate: -50% -100%;
+        z-index: var(--z-tooltip);
 
         &.orient-left,
         &.orient-right {

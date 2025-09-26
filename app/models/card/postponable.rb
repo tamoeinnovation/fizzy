@@ -4,16 +4,16 @@ module Card::Postponable
   included do
     has_one :not_now, dependent: :destroy, class_name: "Card::NotNow"
 
-    scope :postponed, -> { open.joins(:not_now) }
-    scope :active, -> { open.where.missing(:not_now) }
+    scope :postponed, -> { open.published.joins(:not_now) }
+    scope :active, -> { open.published.where.missing(:not_now) }
   end
 
   def postponed?
-    not_now.present?
+    open? && published? && not_now.present?
   end
 
   def active?
-    !postponed?
+    open? && published? && !postponed?
   end
 
   def postpone

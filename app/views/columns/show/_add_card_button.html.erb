@@ -1,0 +1,13 @@
+<div class="card card--new flex flex-column gap-half">
+  <%= button_to collection_cards_path(collection), method: :post, class: "btn btn--link", form: { data: { turbo_frame: "_top" } } do %>
+    <%= icon_tag "add" %>
+    <span>Add a card</span>
+  <% end %>
+
+  <hr class="separator--horizontal full-width" aria-hidden="true">
+
+  <footer class="flex flex-column align-center gap-half">
+    <strong class="txt-uppercase">Watching for new cards</strong>
+    <%= access_involvement_advance_button(collection, Current.user, show_watchers: true) %>
+  </footer>
+</div>

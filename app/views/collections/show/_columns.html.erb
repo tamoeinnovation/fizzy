@@ -5,7 +5,7 @@
         <%= render "collections/show/not_now", collection: collection %>
       </div>
 
-      <%= render "collections/show/stream", page: page %>
+      <%= render "collections/show/stream", page: page, collection: collection %>
 
       <div class="card-columns__right">
         <%= render partial: "collections/show/column", collection: collection.columns, cached: true %>

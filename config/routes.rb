@@ -43,7 +43,7 @@ Rails.application.routes.draw do
           resource :not_now
           resource :stream
           resource :closure
-          resources :columns
+          resource :column
         end
       end
     end

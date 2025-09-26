@@ -72,7 +72,6 @@ export default class extends Controller {
     const body = new FormData()
     const id = item.dataset.id
     const url = container.dataset.dragAndDropUrl.replaceAll("__id__", id)
-    console.debug("Es", container.dataset.dragAndDropUrl, container.dataset.dragAndDropUrl.replaceAll("__id__", id));
 
     return post(url, { body, headers: { Accept: "text/vnd.turbo-stream.html" } })
   }

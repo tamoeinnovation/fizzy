@@ -8,7 +8,10 @@
         action: "mouseover->related-element#highlight mouseout->related-element#unhighlight" } do %>
   <div class="card__header flex align-start gap full-width">
     <h4 class="card__collection flex-inline align-start">
-      <span class="card__id"><%= card.id %></span>
+      <span class="card__id">
+        <span class="for-screen-reader">Card number</span>
+        <%= card.id %>
+      </span>
       <span class="card__collection-name">
         <span class="overflow-ellipsis"><%= event.collection.name %></span>
       </span>

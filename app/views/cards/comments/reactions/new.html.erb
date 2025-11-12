@@ -2,7 +2,7 @@
   <%= form_with model: [ @comment.card, @comment, Reaction.new ],
         class: "reaction reaction__form expanded",
         html: { aria: { label: "New reaction" } },
-        data: { controller: "form reaction-emoji", turbo_frame: dom_id(@comment, :reacting), action: "keydown.esc->form#cancel submit->form#preventEmptySubmit turbo:submit-end->form#reset" } do |form| %>
+        data: { controller: "form reaction-emoji", turbo_frame: dom_id(@comment, :reacting), action: "keydown.esc->form#cancel submit->form#preventEmptySubmit" } do |form| %>
     <label class="reaction__form-label flex gap" style="--column-gap: 0.4ch;">
       <figure class="reaction__avatar margin-none flex-item-no-shrink">
         <%= avatar_tag Current.user %>

@@ -10,7 +10,7 @@ class Cards::Comments::ReactionsControllerTest < ActionDispatch::IntegrationTest
   test "create" do
     assert_difference -> { @comment.reactions.count }, 1 do
       post card_comment_reactions_path(@comment.card, @comment, format: :turbo_stream), params: { reaction: { content: "Great work!" } }
-      assert_turbo_stream action: :append, target: dom_id(@comment, :reactions)
+      assert_turbo_stream action: :replace, target: dom_id(@comment, :reacting)
     end
   end
 

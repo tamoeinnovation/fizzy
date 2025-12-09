@@ -7,6 +7,7 @@ class Signup
   attr_reader :account, :user
 
   validates :email_address, format: { with: URI::MailTo::EMAIL_REGEXP }, on: :identity_creation
+  validate :email_domain_allowed, on: :identity_creation
   validates :full_name, :identity, presence: true, on: :completion
 
   def initialize(...)
@@ -43,6 +44,20 @@ class Signup
   end
 
   private
+    def email_domain_allowed
+      return unless email_address.present?
+
+      allowed_domains = ENV["ALLOWED_EMAIL_DOMAINS"]
+      return if allowed_domains.blank?
+
+      domain = email_address.split("@").last&.downcase
+      allowed_list = allowed_domains.split(",").map(&:strip).map(&:downcase)
+
+      unless allowed_list.include?(domain)
+        errors.add(:email_address, "domain is not allowed to sign up")
+      end
+    end
+
     # Override to customize the handling of external accounts associated to the account.
     def create_tenant
       nil

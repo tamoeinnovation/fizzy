@@ -54,6 +54,14 @@ module ActiveSupport
     teardown do
       Current.clear_all
     end
+
+    def with_env(key, value)
+      old_value = ENV[key]
+      ENV[key] = value
+      yield
+    ensure
+      ENV[key] = old_value
+    end
   end
 end
 

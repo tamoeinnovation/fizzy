@@ -30,6 +30,7 @@ env:
   clear:
     MAILER_FROM_ADDRESS: soporte@tamoe.io # The email address that Fizzy sends email from
     SOLID_QUEUE_IN_PUMA: true # Run background jobs in the app container
+    ALLOWED_EMAIL_DOMAINS: tamoe.io,tamoe.es # Comma-separated list of allowed email domains for signup
 
 
 #-- General configuration --#

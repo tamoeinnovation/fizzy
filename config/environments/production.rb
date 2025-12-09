@@ -8,15 +8,16 @@ Rails.application.configure do
   # Configure these according to whichever email provider you use. An example setup
   # using SMTP looks like the following:
   #
-  # config.action_mailer.smtp_settings = {
-  #   address:              'smtp.example.com', # The address of your email provider's SMTP server
-  #   port:                 2525,
-  #   domain:               'example.com',      # Your domain, which Fizzy will send email from
-  #   user_name:            ENV["SMTP_USERNAME"],
-  #   password:             ENV["SMTP_PASSWORD"],
-  #   authentication:       :plain,
-  #   enable_starttls_auto: true
-  # }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'mail.tamoe.io', # The address of your email provider's SMTP server
+    port:                 587,
+    domain:               'fizzy.tamoe.es',      # Your domain, which Fizzy will send email from
+    user_name:            ENV["SMTP_USERNAME"],
+    password:             ENV["SMTP_PASSWORD"],
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
 
   # Code is not reloaded between requests.
   config.enable_reloading = false
@@ -65,7 +66,7 @@ Rails.application.configure do
                                        .then { |logger| ActiveSupport::TaggedLogging.new(logger) }
 
   # Suppress unstructured log lines
-  config.log_level = :fatal
+  config.log_level = :info
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]

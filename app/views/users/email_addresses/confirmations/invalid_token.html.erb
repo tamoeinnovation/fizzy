@@ -9,8 +9,4 @@
   </p>
 
   <%= link_to "Change my email address", new_user_email_address_path(user_id: @user, script_name: @user.account.slug), class: "btn btn--link center" %>
-
-  <p class="txt-small txt-subtle">
-    If you get stuck, <%= mail_to "support@fizzy.do", "send us an email" %> and we’ll get you back on track.
-  </p>
 </div>

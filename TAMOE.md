@@ -3,3 +3,6 @@ bundle exec kamal app exec -i --reuse "bin/rails runner 'puts \"SMTP_USERNAME: #
 
 
 bundle exec kamal app exec -i --reuse "bin/rails runner 'puts \"SMTP_USERNAME: #{ENV[\"SMTP_USERNAME\"].present? ? \"[Configurado]\" : \"[NO configurado]\"}\"; puts \"SMTP_PASSWORD: #{ENV[\"SMTP_PASSWORD\"].present? ? \"[Configurado]\" : \"[NO configurado]\"}\"; puts \"Mailer delivery_method actual: #{ActionMailer::Base.delivery_method}\"; puts \"SMTP settings: #{ActionMailer::Base.smtp_settings.inspect}\"'"
+
+
+./bin/kamal app exec "bin/rails runner \"Identity.find_by(email_address: 'staff@exmaple.com').update!(staff: true)\""

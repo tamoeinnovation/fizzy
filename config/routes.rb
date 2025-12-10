@@ -149,15 +149,16 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/signup", to: redirect("/signup/new")
-
-  resource :signup, only: %i[ new create ] do
-    collection do
-      scope module: :signups, as: :signup do
-        resource :completion, only: %i[ new create ]
-      end
-    end
-  end
+  # Public signup disabled - only invitation-based registration allowed via /join/:code
+  # get "/signup", to: redirect("/signup/new")
+  #
+  # resource :signup, only: %i[ new create ] do
+  #   collection do
+  #     scope module: :signups, as: :signup do
+  #       resource :completion, only: %i[ new create ]
+  #     end
+  #   end
+  # end
 
   resource :landing
 
